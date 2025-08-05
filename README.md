@@ -173,7 +173,7 @@ flutter test
 =======
 =======
 >>>>>>> b98e38bdbaf9f00847bf1c42ab739581645211bb
-# Swastha Nepal - Emergency Medical Service App
+# Swastha Nepal - Medical Service App
 
 <div align="center">
   <img src="assets/images/Blue Modern Minimalist Medical Clinic Logo.png" alt="EMS++ Logo" width="200"/>
