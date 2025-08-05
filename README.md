@@ -153,22 +153,6 @@ cloud_firestore: ^5.6.3
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👥 Team
-
-- **Developer**: [Your Name]
-- **Designer**: [Designer Name]
-- **Project Manager**: [PM Name]
-
-## 📞 Support
-
-If you have any questions or need support, please contact:
-- Email: [your-email@example.com]
-- GitHub Issues: [Create an issue](https://github.com/yourusername/ems-plus-plus/issues)
-
 ## 🙏 Acknowledgments
 
 - Flutter team for the amazing framework
