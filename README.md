@@ -1,4 +1,4 @@
-# EMS++ - Emergency Medical Service App
+# Swastha Nepal - Emergency Medical Service App
 
 <div align="center">
   <img src="assets/images/medical_documentation.svg" alt="EMS++ Logo" width="200"/>
@@ -11,7 +11,7 @@
 
 ## 📱 About
 
-EMS++ is a comprehensive Flutter-based mobile application designed to provide emergency medical services and healthcare management features. The app serves as a one-stop solution for medical consultations, appointments, blood donations, and emergency services.
+Swastha Nepal is a comprehensive Flutter-based mobile application designed to provide emergency medical services and healthcare management features. The app serves as a one-stop solution for medical consultations, appointments, blood donations, and emergency services.
 
 ## ✨ Features
 
