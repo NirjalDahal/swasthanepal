@@ -1,7 +1,7 @@
 # Swastha Nepal
 
 <div align="center">
-  <img src="assets/images/medical_documentation.svg" alt="EMS++ Logo" width="200"/>
+  <img src="assets/images/Blue Modern Minimalist Medical Clinic Logo.png" alt="EMS++ Logo" width="200"/>
   
   [![Flutter](https://img.shields.io/badge/Flutter-3.5.4-blue.svg)](https://flutter.dev/)
   [![Dart](https://img.shields.io/badge/Dart-3.5.4-blue.svg)](https://dart.dev/)
