@@ -1,4 +1,4 @@
-# EMS++ - Emergency Medical Service App
+# Swastha Nepal
 
 <div align="center">
   <img src="assets/images/medical_documentation.svg" alt="EMS++ Logo" width="200"/>
