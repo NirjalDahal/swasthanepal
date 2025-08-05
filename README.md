@@ -1,6 +1,6 @@
-# test2
+# Swastha Nepal
 
-A new Flutter project.
+A nepali medical app with comprehensive features.
 
 ## Getting Started
 
