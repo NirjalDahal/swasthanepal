@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert'; // For encoding/decoding JSON
+import 'dart:convert';
+import 'package:test2/services/api_service.dart';
+import 'package:test2/services/chat_service.dart';
+import 'package:test2/widgets/loading_widget.dart';
+import 'package:test2/widgets/custom_app_bar.dart';
 
 class AI extends StatefulWidget {
   const AI({super.key});
@@ -10,125 +14,225 @@ class AI extends StatefulWidget {
 }
 
 class _AIState extends State<AI> {
-  
   final TextEditingController _textController = TextEditingController();
+  final ChatService _chatService = ChatService();
+  bool _isLoading = false;
+  List<ChatMessage> _messages = [];
 
-
-  Future<void> makePostRequest() async {
-  // Define the URL
-  final url = Uri.parse('http://127.0.0.1:8000/chatAPI');
-
-  // Define the headers (if needed)
-
-  // Define the body of the request (data to be sent)
-  final body = jsonEncode({
-    'prompt': 'Hi'
-  });
-
-  try {
-    // Make the POST request
-    final response = await http.post(
-      url,
-      body: body,
-    );
-
-    // Check the status code of the response
-    if (response.statusCode == 200) {
-      // Request was successful
-      print('Response data: ${response.body}');
-    } else {
-      // Request failed
-      print('Request failed with status: ${response.statusCode}');
-      print('Response body: ${response.body}');
-    }
-  } catch (e) {
-    // Handle any errors that occur during the request
-    print('Error: $e');
+  @override
+  void initState() {
+    super.initState();
+    _initializeChat();
   }
-}
+
+  Future<void> _initializeChat() async {
+    setState(() => _isLoading = true);
+    try {
+      await _chatService.initializeChat('user_123');
+      _chatService.messagesStream.listen((messages) {
+        setState(() => _messages = messages);
+      });
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error initializing chat: $e')),
+      );
+    } finally {
+      setState(() => _isLoading = false);
+    }
+  }
+
+  Future<void> _sendMessage() async {
+    if (_textController.text.trim().isEmpty) return;
+
+    final message = _textController.text.trim();
+    _textController.clear();
+
+    setState(() => _isLoading = true);
+    try {
+      await _chatService.sendMessage(message, 'user_123', 'User');
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error sending message: $e')),
+      );
+    } finally {
+      setState(() => _isLoading = false);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: Size.fromHeight(60.0), // Adjust the height as needed
-          child: AppBar(
-            centerTitle: true,
-            backgroundColor: Colors.green,
-            title: Text(
-              'AI Psychotherapist',
-              style: TextStyle(
+      appBar: CustomAppBar(
+        title: 'AI Psychotherapist',
+        backgroundColor: Colors.green,
+      ),
+      body: LoadingOverlay(
+        isLoading: _isLoading,
+        message: 'Processing...',
+        child: Column(
+          children: [
+            // Warning message
+            Container(
+              padding: EdgeInsets.all(20),
+              margin: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.orange.shade50,
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: Colors.orange.shade200),
+              ),
+              child: Row(
+                children: [
+                  Icon(Icons.warning, color: Colors.orange.shade700),
+                  SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      '⚠️ Warning: This AI psychotherapist is not 100% accurate and may not fully understand your situation. If you are facing serious mental health concerns, please consult a licensed psychologist or mental health professional.',
+                      style: TextStyle(
+                        color: Colors.orange.shade800,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            
+            // Chat messages
+            Expanded(
+              child: _messages.isEmpty
+                  ? Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.chat_bubble_outline,
+                            size: 64,
+                            color: Colors.grey.shade400,
+                          ),
+                          SizedBox(height: 16),
+                          Text(
+                            'Start a conversation with AI',
+                            style: TextStyle(
+                              color: Colors.grey.shade600,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  : ListView.builder(
+                      padding: EdgeInsets.all(16),
+                      itemCount: _messages.length,
+                      itemBuilder: (context, index) {
+                        final message = _messages[index];
+                        return _buildMessageBubble(message);
+                      },
+                    ),
+            ),
+            
+            // Input area
+            Container(
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
                 color: Colors.white,
-                fontWeight: FontWeight.w500,
-                fontSize: 20
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade200,
+                    blurRadius: 4,
+                    offset: Offset(0, -2),
+                  ),
+                ],
               ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _textController,
+                      decoration: InputDecoration(
+                        hintText: 'Type your message...',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25),
+                          borderSide: BorderSide.none,
+                        ),
+                        filled: true,
+                        fillColor: Colors.grey.shade100,
+                        contentPadding: EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 12,
+                        ),
+                      ),
+                      maxLines: null,
+                      textInputAction: TextInputAction.send,
+                      onSubmitted: (_) => _sendMessage(),
+                    ),
+                  ),
+                  SizedBox(width: 12),
+                  FloatingActionButton(
+                    onPressed: _isLoading ? null : _sendMessage,
+                    backgroundColor: Colors.green,
+                    child: _isLoading
+                        ? SizedBox(
+                            width: 20,
+                            height: 20,
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                              strokeWidth: 2,
+                            ),
+                          )
+                        : Icon(Icons.send, color: Colors.white),
+                    mini: true,
+                  ),
+                ],
               ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                bottom: Radius.circular(20.0), // Adjust the radius as needed
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMessageBubble(ChatMessage message) {
+    final isUser = message.isUser;
+    
+    return Container(
+      margin: EdgeInsets.only(bottom: 12),
+      child: Row(
+        mainAxisAlignment: isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
+        children: [
+          if (!isUser) ...[
+            CircleAvatar(
+              backgroundColor: Colors.green.shade100,
+              child: Icon(Icons.psychology, color: Colors.green),
+              radius: 16,
+            ),
+            SizedBox(width: 8),
+          ],
+          Flexible(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              decoration: BoxDecoration(
+                color: isUser ? Colors.green : Colors.grey.shade100,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Text(
+                message.message,
+                style: TextStyle(
+                  color: isUser ? Colors.white : Colors.black87,
+                  fontSize: 14,
+                ),
               ),
             ),
           ),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                child: Text('⚠️Warning: This AI psychotherapist is not 100% accurate and may not fully understand your situation. If you are facing serious mental health concerns. please consult a licensed psychologist or mental health professional.'),
-          
-              ),
-              SizedBox(height: 200,),
-              Container(
-                              margin: EdgeInsets.symmetric(horizontal: 20),
-                              child: TextFormField(
-                                controller: _textController,
-                                keyboardType: TextInputType.multiline,
-                                minLines: 4,//Normal textInputField will be displayed
-                                maxLines: 5,// when user presses enter it will adapt to it
-                                decoration: InputDecoration(
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                    borderSide: BorderSide(
-                                      color: Colors.grey.shade400
-                                    )
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                    borderSide: BorderSide(
-                                      color: Colors.grey.shade400
-                                    )
-                                  ),
-                                  hintText: 'Start Typing here',
-                                  hintStyle: TextStyle(
-                                    color: Colors.teal.shade300,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w400
-                                  )
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 30,),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                minimumSize: Size(260, 50),
-                                backgroundColor: Colors.green,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)
-                                )
-                                
-                              ),
-                              child: Text(
-                                'Send',
-                                style: TextStyle(
-                                  color: Colors.white
-                                ),
-                              ),
-                              onPressed: makePostRequest,
-                            ),
-                            ],
-          ),
-        ),
+          if (isUser) ...[
+            SizedBox(width: 8),
+            CircleAvatar(
+              backgroundColor: Colors.green,
+              child: Icon(Icons.person, color: Colors.white),
+              radius: 16,
+            ),
+          ],
+        ],
+      ),
     );
   }
 }
