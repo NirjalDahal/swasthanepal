@@ -1,10 +1,10 @@
 # Swastha Nepal
 
-A nepali medical app with comprehensive features.
+A Nepali medical app with comprehensive features.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+The following tools were used for the development of this project:
 
 A few resources to get you started if this is your first Flutter project:
 
