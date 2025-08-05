@@ -155,24 +155,6 @@ Run tests with:
 flutter test
 ```
 
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
-
-## 📞 Support
-
-For support and questions:
-- Create an issue in the repository
-- Contact the development team
-
 ## 🔄 Changelog
 
 ### Version 2.0.0 (Current)
@@ -216,12 +198,6 @@ Swastha Nepal is a comprehensive Flutter-based mobile application designed to pr
    ```
 
 // ... existing code ...
-
-## 📞 Support
-
-If you have any questions or need support, please contact:
-- Email: [your-email@example.com]
-- GitHub Issues: [Create an issue](https://github.com/yourusername/swastha-nepal/issues)
 
 // ... existing code ...
 >>>>>>> 2887cd768ce6c4629c1c2619b46f3fe00dbc9ab3
