@@ -79,414 +79,412 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
               SizedBox(height: 50),
-            Container(
-              padding: EdgeInsets.only(right: 240),
+            Padding(
+              padding: EdgeInsets.only(left: 35),
               child: Text(
                   'Features',
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                       fontSize: 20
-            
                   ),
               ),
             ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 30),
+            Padding(
+              padding: EdgeInsets.only(left: 35),
               child: Text(
-                  'All features of Emergency Medical Service (EMS++)',
+                  'All the available features of Swastha Nepal',
                   style: TextStyle(
                       color: Colors.teal.shade300,
                       fontWeight: FontWeight.bold,
                       fontSize: 13
-            
                   ),
               ),
             ),
             SizedBox(height: 20),
-            Container(
-              
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
-                  boxShadow: [
-                      BoxShadow(
-                          color: Colors.grey.shade100,
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: Offset(0, 3), // changes position of shadow
-                      ),
-                  ],
-              ),
-              height: 80,
-              width: 330,
-              child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                      Container(
-                          padding: EdgeInsets.only(left: 5),
-                          child: SvgPicture.asset('assets/images/medical_documentation.svg')
-                          ),
-                      Container(
-                          padding: EdgeInsets.only(left: 10),
-                          width: 200,
-                        child: Text(
-                            'Get consultation and prescription',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold
+            // Center all feature containers
+            Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 0),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                        boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.shade100,
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: Offset(0, 3), // changes position of shadow
                             ),
-                        ),
-                      ),
-                      ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                minimumSize: Size(20, 40),
-                                backgroundColor: Colors.green,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)
-                                )
-                                
-                              ),
-                              child: Text(
-                                'Go',
-                                style: TextStyle(
-                                  color: Colors.white
+                        ],
+                    ),
+                    height: 80,
+                    width: 330,
+                    child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                            Container(
+                                padding: EdgeInsets.only(left: 5),
+                                child: SvgPicture.asset('assets/images/medical_documentation.svg')
                                 ),
-                              ),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => Doctors()),
-                                );
-                              }
-                            ),
-                  ],
-              ),
-              
-            ),
-            SizedBox(height: 20),
-            Container(
-              child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                      Container(
-                          width: 50,
-                          height: 50,
-                          padding: EdgeInsets.only(left: 5),
-                          child: SvgPicture.asset('assets/images/calendar-thin-svgrepo-com.svg')
-                          ),
-                      Container(
-                          padding: EdgeInsets.only(left: 10),
-                          width: 200,
-                        child: Text(
-                            'Book an appointment',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold
-                            ),
-                        ),
-                      ),
-                      ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                minimumSize: Size(20, 40),
-                                backgroundColor: Colors.green,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)
-                                )
-                                
-                              ),
+                            Container(
+                                padding: EdgeInsets.only(left: 10),
+                                width: 200,
                               child: Text(
-                                'Go',
-                                style: TextStyle(
-                                  color: Colors.white
+                                  'Get consultation and prescription',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold
+                                  ),
+                              ),
+                            ),
+                            ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      minimumSize: Size(20, 40),
+                                      backgroundColor: Colors.green,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10)
+                                      )
+                                    ),
+                                    child: Text(
+                                      'Go',
+                                      style: TextStyle(
+                                        color: Colors.white
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => Doctors()),
+                                      );
+                                    }
+                                  ),
+                        ],
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Container(
+                    child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                            Container(
+                                width: 50,
+                                height: 50,
+                                padding: EdgeInsets.only(left: 5),
+                                child: SvgPicture.asset('assets/images/calendar-thin-svgrepo-com.svg')
                                 ),
-                              ),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => Appointment()),
-                                );
-                              }
-                            ),
-                  ],
-              ),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
-                  boxShadow: [
-                      BoxShadow(
-                          color: Colors.grey.shade100,
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: Offset(0, 3), // changes position of shadow
-                      ),
-                  ],
-              
-              ),
-              height: 80,
-              width: 330,
-            ),
-            SizedBox(height: 20),
-            Container(
-              child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                      Container(
-                          width: 50,
-                          height: 50,
-                          padding: EdgeInsets.only(left: 5),
-                          child: SvgPicture.asset(
-                              'assets/images/blood-donation-svgrepo-com.svg')
-                          ),
-                      Container(
-                          padding: EdgeInsets.only(left: 10),
-                          width: 200,
-                        child: Text(
-                            'Donate Blood',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold
-                            ),
-                        ),
-                      ),
-                      ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                minimumSize: Size(20, 40),
-                                backgroundColor: Colors.green,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)
-                                )
-                                
-                              ),
+                            Container(
+                                padding: EdgeInsets.only(left: 10),
+                                width: 200,
                               child: Text(
-                                'Go',
-                                style: TextStyle(
-                                  color: Colors.white
+                                  'Book an appointment',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold
+                                  ),
+                              ),
+                            ),
+                            ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      minimumSize: Size(20, 40),
+                                      backgroundColor: Colors.green,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10)
+                                      )
+                                    ),
+                                    child: Text(
+                                      'Go',
+                                      style: TextStyle(
+                                        color: Colors.white
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => Appointment()),
+                                      );
+                                    }
+                                  ),
+                        ],
+                    ),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                        boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.shade100,
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: Offset(0, 3), // changes position of shadow
+                            ),
+                        ],
+                    ),
+                    height: 80,
+                    width: 330,
+                  ),
+                  SizedBox(height: 20),
+                  Container(
+                    child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                            Container(
+                                width: 50,
+                                height: 50,
+                                padding: EdgeInsets.only(left: 5),
+                                child: SvgPicture.asset(
+                                    'assets/images/blood-donation-svgrepo-com.svg')
                                 ),
-                              ),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => DonateBlood()),
-                                );
-                              }
-                            ),
-                  ],
-              ),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
-                  boxShadow: [
-                      BoxShadow(
-                          color: Colors.grey.shade100,
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: Offset(0, 3), // changes position of shadow
-                      ),
-                  ],
-              ),
-              height: 80,
-              width: 330,
-            ),
-            SizedBox(height: 20),
-            Container(
-              child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                      Container(
-                          width: 50,
-                          height: 50,
-                          padding: EdgeInsets.only(left: 5),
-                          child: SvgPicture.asset('assets/images/psychology-book-svgrepo-com.svg')
-                          ),
-                      Container(
-                          padding: EdgeInsets.only(left: 10),
-                          width: 200,
-                        child: Text(
-                            'AI Psychotherapist',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold
-                            ),
-                        ),
-                      ),
-                      ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                minimumSize: Size(20, 40),
-                                backgroundColor: Colors.green,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)
-                                )
-                                
-                              ),
+                            Container(
+                                padding: EdgeInsets.only(left: 10),
+                                width: 200,
                               child: Text(
-                                'Go',
-                                style: TextStyle(
-                                  color: Colors.white
+                                  'Donate Blood',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold
+                                  ),
+                              ),
+                            ),
+                            ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      minimumSize: Size(20, 40),
+                                      backgroundColor: Colors.green,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10)
+                                      )
+                                    ),
+                                    child: Text(
+                                      'Go',
+                                      style: TextStyle(
+                                        color: Colors.white
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => DonateBlood()),
+                                      );
+                                    }
+                                  ),
+                        ],
+                    ),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                        boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.shade100,
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: Offset(0, 3), // changes position of shadow
+                            ),
+                        ],
+                    ),
+                    height: 80,
+                    width: 330,
+                  ),
+                  SizedBox(height: 20),
+                  Container(
+                    child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                            Container(
+                                width: 50,
+                                height: 50,
+                                padding: EdgeInsets.only(left: 5),
+                                child: SvgPicture.asset('assets/images/psychology-book-svgrepo-com.svg')
                                 ),
-                              ),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => AI()),
-                                );
-                              }
-                            ),
-                  ],
-              ),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
-                  boxShadow: [
-                      BoxShadow(
-                          color: Colors.grey.shade100,
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: Offset(0, 3), // changes position of shadow
-                      ),
-                  ],
-              ),
-              height: 80,
-              width: 330,
-            ),
-            SizedBox(height: 20),
-            Container(
-              child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                      Container(
-                          width: 50,
-                          height: 50,
-                          padding: EdgeInsets.only(left: 5),
-                          child: SvgPicture.asset('assets/images/exchange-change-svgrepo-com.svg')
-                          ),
-                      Container(
-                          padding: EdgeInsets.only(left: 10),
-                          width: 200,
-                        child: Text(
-                            'Important Updates',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold
-                            ),
-                        ),
-                      ),
-                      ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                minimumSize: Size(20, 40),
-                                backgroundColor: Colors.green,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)
-                                )
-                                
-                              ),
+                            Container(
+                                padding: EdgeInsets.only(left: 10),
+                                width: 200,
                               child: Text(
-                                'Go',
-                                style: TextStyle(
-                                  color: Colors.white
+                                  'AI Psychotherapist',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold
+                                  ),
+                              ),
+                            ),
+                            ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      minimumSize: Size(20, 40),
+                                      backgroundColor: Colors.green,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10)
+                                      )
+                                    ),
+                                    child: Text(
+                                      'Go',
+                                      style: TextStyle(
+                                        color: Colors.white
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => AI()),
+                                      );
+                                    }
+                                  ),
+                        ],
+                    ),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                        boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.shade100,
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: Offset(0, 3), // changes position of shadow
+                            ),
+                        ],
+                    ),
+                    height: 80,
+                    width: 330,
+                  ),
+                  SizedBox(height: 20),
+                  Container(
+                    child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                            Container(
+                                width: 50,
+                                height: 50,
+                                padding: EdgeInsets.only(left: 5),
+                                child: SvgPicture.asset('assets/images/exchange-change-svgrepo-com.svg')
                                 ),
-                              ),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => Announcements()),
-                                );
-                              }
-                            ),
-                  ],
-              ),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
-                  boxShadow: [
-                      BoxShadow(
-                          color: Colors.grey.shade100,
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: Offset(0, 3), // changes position of shadow
-                      ),
-                  ],
-              ),
-              height: 80,
-              width: 330,
-            ),
-            SizedBox(height: 20),
-            Container(
-              child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                      Container(
-                          width: 50,
-                          height: 50,
-                          padding: EdgeInsets.only(left: 5),
-                          child: SvgPicture.asset('assets/images/caution-svgrepo-com.svg')
-                          ),
-                      Container(
-                          padding: EdgeInsets.only(left: 10),
-                          width: 200,
-                        child: Text(
-                            'Report Hospital',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold
-                            ),
-                        ),
-                      ),
-                      ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                minimumSize: Size(20, 40),
-                                backgroundColor: Colors.green,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)
-                                )
-                                
-                              ),
+                            Container(
+                                padding: EdgeInsets.only(left: 10),
+                                width: 200,
                               child: Text(
-                                'Go',
-                                style: TextStyle(
-                                  color: Colors.white
-                                ),
+                                  'Important Updates',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold
+                                  ),
                               ),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => ReportHospital()),
-                                );
-                              }
                             ),
-                  ],
+                            ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      minimumSize: Size(20, 40),
+                                      backgroundColor: Colors.green,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10)
+                                      )
+                                    ),
+                                    child: Text(
+                                      'Go',
+                                      style: TextStyle(
+                                        color: Colors.white
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => Announcements()),
+                                      );
+                                    }
+                                  ),
+                        ],
+                    ),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                        boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.shade100,
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: Offset(0, 3), // changes position of shadow
+                            ),
+                        ],
+                    ),
+                    height: 80,
+                    width: 330,
+                  ),
+                  SizedBox(height: 20),
+                  Container(
+                    child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                            Container(
+                                width: 50,
+                                height: 50,
+                                padding: EdgeInsets.only(left: 5),
+                                child: SvgPicture.asset('assets/images/caution-svgrepo-com.svg')
+                                ),
+                            Container(
+                                padding: EdgeInsets.only(left: 10),
+                                width: 200,
+                              child: Text(
+                                  'Report Hospital',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold
+                                  ),
+                              ),
+                            ),
+                            ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      minimumSize: Size(20, 40),
+                                      backgroundColor: Colors.green,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10)
+                                      )
+                                    ),
+                                    child: Text(
+                                      'Go',
+                                      style: TextStyle(
+                                        color: Colors.white
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => ReportHospital()),
+                                      );
+                                    }
+                                  ),
+                        ],
+                    ),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                        boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.shade100,
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: Offset(0, 3), // changes position of shadow
+                            ),
+                        ],
+                    ),
+                    height: 80,
+                    width: 330,
+                  ),
+                  SizedBox(height: 20),
+                ],
               ),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
-                  boxShadow: [
-                      BoxShadow(
-                          color: Colors.grey.shade100,
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: Offset(0, 3), // changes position of shadow
-                      ),
-                  ],
-              ),
-              height: 80,
-              width: 330,
             ),
-            
           ],
           ),
       ),

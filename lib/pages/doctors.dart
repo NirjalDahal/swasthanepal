@@ -95,7 +95,7 @@ class _DoctorsState extends State<Doctors> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(right: 100),
+                padding: EdgeInsets.only(right: 135),
                 child: Text(
                     'Book doctors and treat you illness',
                     style: TextStyle(

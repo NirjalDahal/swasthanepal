@@ -101,12 +101,11 @@ class _OnboardingViewState extends State<OnboardingView> {
            Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 150),
+              SizedBox(height: 70),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 50),
-                child: SvgPicture.asset('assets/images/Order Success.svg'),
+                margin: EdgeInsets.symmetric(horizontal: 0.0),
+                child: Image.asset('assets/images/Blue Modern Minimalist Medical Clinic Logo.png'),
               ),
-              SizedBox(height: 50),
               Text(
                 'Welcome',
                 style: TextStyle(
@@ -119,7 +118,7 @@ class _OnboardingViewState extends State<OnboardingView> {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 60),
                 child: Text(
-                  'Before Enjoying EMS++, please register first',
+                  'Before Enjoying Swastha Nepal, please register first',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.teal.shade400,
